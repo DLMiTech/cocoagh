@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">CoCoaGH</string>
+    <string name="todo">TODO</string>
+    <string name="welcome_to">WELCOME TO</string>
+    <string name="cocoa_gh">CoCoa GH</string>
+    <string name="about_text">Ghana\'s cocoa farming is a vital industry, contributing significantly to the country\'s economy.</string>
+    <string name="get_started">Get Started</string>
+    <string name="footer">2024 By CoCoa GH</string>
+
+
+    <!--    ============ Inputs Strings ==============-->
+    <string name="username_label">Username</string>
+    <string name="username_hint">Enter username</string>
+    <string name="password_label">Password</string>
+    <string name="password_hint">Enter password</string>
+    <string name="phone_label">Phone</string>
+    <string name="phone_hint">Enter phone</string>
+
+
+    <!--    ============ Button Strings ==============-->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="reset_opt">Send Reset OPT</string>
+
+    <!--    ============ Label Strings ==============-->
+    <string name="label_sign_in_header">Welcome Back !</string>
+    <string name="label_sign_in_p">Sign in to continue to CoCoaGH.</string>
+    <string name="label_forget_password">Forgot password?</string>
+    <string name="label_do_not_have_account">Don\'t have an account?</string>
+
+    <string name="label_sign_up_header">Register Account</string>
+    <string name="label_sign_up_p">Get your Free CoCoaGH account now.</string>
+    <string name="label_terms_of_use">By registering you agree to the CoCoaGH</string>
+    <string name="label_terms">Terms of Use</string>
+    <string name="label_have_account">Already have an account ?</string>
+
+    <string name="label_reset_p_header">Reset password with CoCoaGH</string>
+    <string name="label_reset_p_p">Enter your phone and instructions will be sent to you!</string>
+    <string name="label_remember_pass">Wait, I remember my password…</string>
+    <string name="label_click_here">Click here</string>
+    <string name="admin">Admin</string>
+    <string name="enter_full_name">Enter full name</string>
+    <string name="add_lbc">Add LBC</string>
+    <string name="farmers">Farmers</string>
+    <string name="purchases">Purchases</string>
+    <string name="add_new_lbc">ADD NEW LBC</string>
+    <string name="connect_farmers">CONNECT FARMERS</string>
+    <string name="farmers_inputs">FARMERS INPUTS</string>
+    <string name="purchasesC">PURCHASES</string>
+    <string name="username">Username</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="update">UPDATE</string>
+    <string name="my_farm_infomation">My Farm Information</string>
+</resources>
