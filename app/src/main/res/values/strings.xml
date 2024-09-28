@@ -3,7 +3,8 @@
     <string name="todo">TODO</string>
     <string name="welcome_to">WELCOME TO</string>
     <string name="cocoa_gh">CoCoa GH</string>
-    <string name="about_text">Ghana\'s cocoa farming is a vital industry, contributing significantly to the country\'s economy.</string>
+    <string name="about_text">Enhance the efficiency, transparency and sustainability of cocoa farming and trading processes,
+    ultimately improving the livelihoods of cocoa farmers and ensuring the quality and traceability of cocoa beans from farm to export.</string>
     <string name="get_started">Get Started</string>
     <string name="footer">2024 By CoCoa GH</string>
 
@@ -17,7 +18,7 @@
     <string name="phone_hint">Enter phone</string>
 
 
-    <!--    ============ Button Strings ==============-->
+    <!--    ============ Button Strings ============== Request For Inputs-->
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="reset_opt">Send Reset OPT</string>

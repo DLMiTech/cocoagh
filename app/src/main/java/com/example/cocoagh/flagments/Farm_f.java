@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,18 +121,24 @@ public class Farm_f extends Fragment {
             farms.setImage(myFarmImage);
             farms.setStage(myStage);
 
-            FarmRepo farmRepo = new FarmRepo(getActivity());
+            try {
+                FarmRepo farmRepo = new FarmRepo(getActivity());
 
-            boolean result = farmRepo.addFarm(farms);
-            if (result){
-                Toast.makeText(getActivity(), "Farm information added successfully", Toast.LENGTH_SHORT).show();
-                location.setText("");
-                hectares.setText("");
-                selectedStage = null;
-                imageView.setImageResource(R.drawable.d_cocoa);
-            }else {
-                Toast.makeText(getActivity(), "Error adding new farm.", Toast.LENGTH_SHORT).show();
+                boolean result = farmRepo.addFarm(farms);
+                if (result){
+                    Toast.makeText(getActivity(), "Farm information added successfully", Toast.LENGTH_SHORT).show();
+                    location.setText("");
+                    hectares.setText("");
+                    selectedStage = null;
+                    imageView.setImageResource(R.drawable.d_cocoa);
+                }else {
+                    Toast.makeText(getActivity(), "Error adding new farm.", Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+                Log.e("Database Error", e.getMessage());
+                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
+
 
         });
 

@@ -17,6 +17,9 @@
         android:theme="@style/Theme.CoCoaGH"
         tools:targetApi="31">
         <activity
+            android:name=".farmer.ViewInputs"
+            android:exported="false" />
+        <activity
             android:name=".farmer.RequestInputs"
             android:exported="false" />
         <activity

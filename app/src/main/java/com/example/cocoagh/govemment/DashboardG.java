@@ -17,6 +17,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.cocoagh.R;
+import com.example.cocoagh.models.Users;
+import com.example.cocoagh.repo.InputRepo;
+import com.example.cocoagh.repo.UserRepo;
 
 public class DashboardG extends AppCompatActivity {
 
@@ -59,6 +62,16 @@ public class DashboardG extends AppCompatActivity {
                     })
                     .show();
         });
+
+        UserRepo userRepo = new UserRepo(this);
+        InputRepo inputRepo = new InputRepo(this);
+        int totalInputs = inputRepo.getTotalInputs();
+        int totalFarmers = userRepo.getTotalUsersByType(0);
+        numberOfFarmers.setText(String.valueOf(totalFarmers));
+        int totalLBC = userRepo.getTotalUsersByType(1);
+        numberOfLBC.setText(String.valueOf(totalLBC));
+        numberOfInputs.setText(String.valueOf(totalInputs));
+
 
         addLBC.setOnClickListener(view -> {
             startActivity(new Intent(this, AddLBC.class));

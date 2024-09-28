@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cocoagh.R;
+import com.example.cocoagh.farmer.RequestInputs;
 import com.example.cocoagh.farmer.ViewFarms;
+import com.example.cocoagh.farmer.ViewInputs;
 
 public class Shopp_f extends Fragment {
 
@@ -33,11 +35,11 @@ public class Shopp_f extends Fragment {
         });
 
         addInputs.setOnClickListener(view1 -> {
-            Toast.makeText(getActivity(), "Add inputs Info", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity(), RequestInputs.class));
         });
 
         viewInputs.setOnClickListener(view1 -> {
-            Toast.makeText(getActivity(), "View Inputs Info", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity(), ViewInputs.class));
         });
 
         farmRequests.setOnClickListener(view1 -> {

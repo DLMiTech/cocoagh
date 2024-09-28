@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
@@ -89,6 +90,14 @@ public class UserRepo extends DBAccess {
                 intent = new Intent(context, DashboardLBC.class);
             }
 
+            // Assuming you get the user ID and name after login
+            SharedPreferences sharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("user_id", id); // Save user ID
+            editor.putString("user_name", name); // Save user name
+            editor.apply();
+
+
             // Pass the user information to the new activity
             intent.putExtra("id", id);
             intent.putExtra("username", userUsername);
@@ -144,6 +153,22 @@ public class UserRepo extends DBAccess {
     }
 
 
+    public int getTotalUsersByType(int userType) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM users WHERE userType = ?", new String[]{String.valueOf(userType)});
+
+        int totalCount = 0;
+        if (cursor.moveToFirst()) {
+            totalCount = cursor.getInt(0); // Get the count from the first column
+        }
+
+        cursor.close();
+        db.close();
+        return totalCount; // Return the total count of users
+    }
+
+
+
 
     // Method to get all users
     @SuppressLint("Range")
@@ -171,6 +196,40 @@ public class UserRepo extends DBAccess {
         }
         return userList;
     }
+
+
+    @SuppressLint("Range")
+    public List<Users> getUsersByType(int userType) {
+        List<Users> userList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Query to get all users by the given userType
+        Cursor cursor = db.query("users",
+                new String[]{"id", "name", "username", "phone", "password", "userType", "dateCreated"},
+                "userType = ?",
+                new String[]{String.valueOf(userType)},
+                null, null, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Users user = new Users();
+                    user.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                    user.setName(cursor.getString(cursor.getColumnIndex("name")));
+                    user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
+                    user.setPhone(cursor.getString(cursor.getColumnIndex("phone")));
+                    user.setPassword(cursor.getString(cursor.getColumnIndex("password")));
+                    user.setUserType(cursor.getInt(cursor.getColumnIndex("userType")));
+                    userList.add(user);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        db.close();
+        return userList;
+    }
+
 
 
     // Method to get one user by ID

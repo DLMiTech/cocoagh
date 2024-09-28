@@ -1,6 +1,6 @@
-package com.example.cocoagh.govemment;
+package com.example.cocoagh.farmer;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -14,15 +14,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.cocoagh.R;
 import com.example.cocoagh.adapters.FarmAdapter;
-import com.example.cocoagh.adapters.FarmersAdapter;
+import com.example.cocoagh.adapters.InputsAdapter;
 import com.example.cocoagh.models.Farms;
-import com.example.cocoagh.models.Users;
+import com.example.cocoagh.models.Inputs;
 import com.example.cocoagh.repo.FarmRepo;
-import com.example.cocoagh.repo.UserRepo;
+import com.example.cocoagh.repo.InputRepo;
 
 import java.util.List;
 
-public class Farmers extends AppCompatActivity {
+public class ViewInputs extends AppCompatActivity {
 
     private ImageView backBtn;
     private GridView gridView;
@@ -31,33 +31,39 @@ public class Farmers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_farmers);
+        setContentView(R.layout.activity_view_inputs);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
         init();
+
         backBtn.setOnClickListener(view -> {
-            startActivity(new Intent(this, DashboardG.class));
             finish();
         });
 
-        try {
-            UserRepo userRepo = new UserRepo(this);
-            List<Users> usersList = userRepo.getUsersByType(0);
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        int farmerId = sharedPreferences.getInt("user_id", -1);
 
-            FarmersAdapter adapter = new FarmersAdapter(this, usersList);
+        try {
+            InputRepo inputRepo = new InputRepo(this);
+            List<Inputs> inputsList = inputRepo.getInputByFarmerId(farmerId);
+
+            // Create and set the adapter
+            InputsAdapter adapter = new InputsAdapter(this, inputsList);
             gridView.setAdapter(adapter);
 
         } catch (Exception e) {
             e.printStackTrace(); // Print the stack trace to logcat
-            Toast.makeText(this, "Failed to retrieve farmer: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Failed to retrieve inputs: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
+
+
     public void init(){
         backBtn = findViewById(R.id.backBtn);
-        gridView = findViewById(R.id.farms_grid_view);
+        gridView = findViewById(R.id.input_grid_view);
     }
 }

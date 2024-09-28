@@ -84,4 +84,37 @@ public class FarmRepo extends DBAccess {
         db.close();
         return farmsList;
     }
+
+
+
+    @SuppressLint("Range")
+    public List<Farms> getFarmsByFarmerId(int farmerId) {
+        List<Farms> farmsList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Query to get all farms by the given farmerId
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE farmerId = ?", new String[]{String.valueOf(farmerId)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                double farmSize = cursor.getDouble(cursor.getColumnIndex("size"));
+                String farmStage = cursor.getString(cursor.getColumnIndex("stage"));
+                String farmLocation = cursor.getString(cursor.getColumnIndex("location"));
+                byte[] image = cursor.getBlob(cursor.getColumnIndex("image"));
+                String farmerName = cursor.getString(cursor.getColumnIndex("farmName"));
+
+                // Create a new Farms object and add it to the list
+                Farms farms = new Farms(id, farmerId, farmSize, farmStage, farmLocation, farmerName, image);
+                farmsList.add(farms);
+            } while (cursor.moveToNext());
+        }
+
+        // Close the cursor and the database
+        cursor.close();
+        db.close();
+
+        return farmsList;
+    }
+
 }

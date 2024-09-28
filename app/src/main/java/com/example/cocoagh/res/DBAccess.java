@@ -25,6 +25,7 @@ public class DBAccess extends SQLiteOpenHelper {
                 "userType INTEGER DEFAULT 0, " +
                 "dateCreated DATETIME DEFAULT CURRENT_TIMESTAMP);";
 
+
         String CREATE_FARM_TABLE = "CREATE TABLE  farms (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "farmerId INTEGER, " +
@@ -35,7 +36,22 @@ public class DBAccess extends SQLiteOpenHelper {
                 "image BLOB)";
 
 
+        String CREATE_INPUT_TABLE = "CREATE TABLE  inputs (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "farmerId INTEGER," +
+                "farmName TEXT," +
+                "type TEXT," +
+                "qty TEXT," +
+                "note TEXT," +
+                "status TEXT DEFAULT 'Pending'," +
+                "requestDate DATETIME DEFAULT CURRENT_TIMESTAMP" +
+                ")";
+
+
+
+
         sqLiteDatabase.execSQL(CREATE_FARM_TABLE);
+        sqLiteDatabase.execSQL(CREATE_INPUT_TABLE);
         sqLiteDatabase.execSQL(createUsersTable);
     }
 
@@ -43,10 +59,12 @@ public class DBAccess extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         String dropUsersTable = "DROP TABLE IF EXISTS users;";
         String dropFarmTable = "DROP TABLE IF EXISTS farms;";
+        String dropInputTable = "DROP TABLE IF EXISTS inputs;";
 
         // Drop existing tables
         sqLiteDatabase.execSQL(dropUsersTable);
         sqLiteDatabase.execSQL(dropFarmTable);
+        sqLiteDatabase.execSQL(dropInputTable);
 
         // Recreate the tables
         onCreate(sqLiteDatabase);

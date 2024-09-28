@@ -1,5 +1,6 @@
 package com.example.cocoagh.farmer;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -18,7 +19,9 @@ import com.example.cocoagh.repo.FarmRepo;
 
 import java.util.List;
 
-public class ViewFarms extends AppCompatActivity {
+public class
+
+ViewFarms extends AppCompatActivity {
 
     private ImageView backBtn;
     private GridView gridView;
@@ -41,10 +44,12 @@ public class ViewFarms extends AppCompatActivity {
         });
 
 
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        int farmerId = sharedPreferences.getInt("user_id", -1);
 
         try {
             FarmRepo farmRepo = new FarmRepo(this);
-            List<Farms> farmsList = farmRepo.getAllFarms();
+            List<Farms> farmsList = farmRepo.getFarmsByFarmerId(farmerId);
 
             // Create and set the adapter
             FarmAdapter adapter = new FarmAdapter(this, farmsList);
