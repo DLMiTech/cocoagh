@@ -22,7 +22,7 @@ public class DBAccess extends SQLiteOpenHelper {
                 "username TEXT UNIQUE, " +
                 "phone TEXT, " +
                 "password TEXT, " +
-                "userType INTEGER DEFAULT 0, " +
+                "userType INTEGER, " +
                 "dateCreated DATETIME DEFAULT CURRENT_TIMESTAMP);";
 
 
@@ -47,12 +47,26 @@ public class DBAccess extends SQLiteOpenHelper {
                 "requestDate DATETIME DEFAULT CURRENT_TIMESTAMP" +
                 ")";
 
+        String CREATE_BEANS = "CREATE TABLE beans(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "farmerId INTEGER," +
+                "farmerName TEXT," +
+                "farmerPhone TEXT," +
+                "quantity REAL," +
+                "price REAL," +
+                "total REAL," +
+                "address TEXT," +
+                "status TEXT," +
+                "addedDate DATETIME DEFAULT CURRENT_TIMESTAMP" +
+                ")";
+
 
 
 
         sqLiteDatabase.execSQL(CREATE_FARM_TABLE);
         sqLiteDatabase.execSQL(CREATE_INPUT_TABLE);
         sqLiteDatabase.execSQL(createUsersTable);
+        sqLiteDatabase.execSQL(CREATE_BEANS);
     }
 
     @Override
@@ -60,11 +74,13 @@ public class DBAccess extends SQLiteOpenHelper {
         String dropUsersTable = "DROP TABLE IF EXISTS users;";
         String dropFarmTable = "DROP TABLE IF EXISTS farms;";
         String dropInputTable = "DROP TABLE IF EXISTS inputs;";
+        String dropBeansTable = "DROP TABLE IF EXISTS inputs;";
 
         // Drop existing tables
         sqLiteDatabase.execSQL(dropUsersTable);
         sqLiteDatabase.execSQL(dropFarmTable);
         sqLiteDatabase.execSQL(dropInputTable);
+        sqLiteDatabase.execSQL(dropBeansTable);
 
         // Recreate the tables
         onCreate(sqLiteDatabase);

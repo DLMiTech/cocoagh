@@ -1,6 +1,7 @@
 package com.example.cocoagh.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocoagh.R;
+import com.example.cocoagh.farmer.ViewFarms;
+import com.example.cocoagh.govemment.AdminViewFarmerFarms;
 import com.example.cocoagh.models.Inputs;
 import com.example.cocoagh.models.Users;
 
@@ -63,7 +66,10 @@ public class FarmersAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int userId = (int) v.getTag();
 
-                Toast.makeText(context, "View farmers farm "+userId, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, AdminViewFarmerFarms.class);
+                intent.putExtra("farmerId", userId);
+                context.startActivity(intent);
+
             }
         });
 

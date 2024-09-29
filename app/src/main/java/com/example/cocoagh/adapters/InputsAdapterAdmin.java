@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.cocoagh.R;
 import com.example.cocoagh.models.Inputs;
 import com.example.cocoagh.models.Users;
+import com.example.cocoagh.repo.InputRepo;
 
 import java.util.List;
 
@@ -70,7 +71,12 @@ public class InputsAdapterAdmin extends BaseAdapter {
             public void onClick(View v) {
                 int inputId = (int) v.getTag();
 
-                Toast.makeText(context, "Change input status "+inputId, Toast.LENGTH_SHORT).show();
+                InputRepo inputRepo = new InputRepo(context);
+                inputRepo.updateInputStatus(inputId, "Approved");
+
+
+                Toast.makeText(context, "Input approved successfully", Toast.LENGTH_SHORT).show();
+
             }
         });
 

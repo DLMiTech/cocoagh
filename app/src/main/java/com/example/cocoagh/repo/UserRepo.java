@@ -50,6 +50,7 @@ public class UserRepo extends DBAccess {
         values.put("username", user.getUsername());
         values.put("phone", user.getPhone());
         values.put("password", user.getPassword());
+        values.put("userType", user.getUserType());
 
         long result = db.insert("users", null, values);
         return result != -1; // Return true if insert was successful
@@ -85,6 +86,8 @@ public class UserRepo extends DBAccess {
             if (userType == 0) {
                 // Start Activity 1
                 intent = new Intent(context, DashboardF.class);
+            } else if (userType == 1) {
+                intent = new Intent(context, DashboardLBC.class);
             } else {
                 // Start Activity 2
                 intent = new Intent(context, DashboardLBC.class);
@@ -94,7 +97,8 @@ public class UserRepo extends DBAccess {
             SharedPreferences sharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("user_id", id); // Save user ID
-            editor.putString("user_name", name); // Save user name
+            editor.putString("user_name", name);
+            editor.putString("user_phone", userPhone);
             editor.apply();
 
 

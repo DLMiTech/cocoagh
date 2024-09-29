@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
             String myUsername = username.getText().toString();
             String myPhone = phone.getText().toString();
             String myPassword = password.getText().toString();
+            int myUserType = 0;
 
             if (myFullName.isEmpty() || myUsername.isEmpty() || myPhone.isEmpty() || myPassword.isEmpty()){
                 Toast.makeText(this, "All input are required to register.", Toast.LENGTH_SHORT).show();
@@ -77,6 +78,9 @@ public class RegisterActivity extends AppCompatActivity {
                     users.setUsername(myUsername);
                     users.setPhone(myPhone);
                     users.setPassword(myPassword);
+                    users.setUserType(myUserType);
+
+
                     if (userRepo.registerUser(users)){
                         new AlertDialog.Builder(this)
                                 .setIcon(R.drawable.alert_g)

@@ -57,15 +57,20 @@ public class AddLBC extends AppCompatActivity {
                 users.setUsername(myUsername);
                 users.setPhone(myPhone);
                 users.setPassword(myPassword);
-                users.setUserType(2);
+                users.setUserType(1);
 
-                Toast.makeText(this, "UserType"+users.getUserType(), Toast.LENGTH_SHORT).show();
 
                 UserRepo userRepo = new UserRepo(this);
                 try {
                     boolean result = userRepo.registerUser(users);
                     if (result){
-                        Toast.makeText(this, "LBC added successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "LBC added successfully. "+users.getUserType(), Toast.LENGTH_SHORT).show();
+                        name.setText("");
+                        username.setText("");
+                        email.setText("");
+                        phone.setText("");
+                        password.setText("");
+
                     }else {
                         Toast.makeText(this, "Error adding LBC", Toast.LENGTH_SHORT).show();
                     }
@@ -76,7 +81,6 @@ public class AddLBC extends AppCompatActivity {
 
 
             }
-            Toast.makeText(this, "Add LBC", Toast.LENGTH_SHORT).show();
         });
     }
 

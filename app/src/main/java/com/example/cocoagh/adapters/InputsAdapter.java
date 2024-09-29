@@ -19,6 +19,7 @@ import com.example.cocoagh.repo.FarmRepo;
 import com.example.cocoagh.repo.InputRepo;
 
 import java.util.List;
+import java.util.Objects;
 
 public class InputsAdapter extends BaseAdapter {
 
@@ -75,14 +76,21 @@ public class InputsAdapter extends BaseAdapter {
         editFarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int farmId = (int) v.getTag();
+                int inputId = (int) v.getTag();
 
                 // Open an activity or dialog to edit the product
 
 //                Intent intent = new Intent(context, CandidateEditActivity.class);
 //                intent.putExtra("INPUT_ID", inputId);
 //                context.startActivity(intent);
-                Toast.makeText(context, "Edit Input Info", Toast.LENGTH_SHORT).show();
+                if (Objects.equals(inputs.getStatus(), "Pending")){
+                    InputRepo inputRepo = new InputRepo(context);
+                    inputRepo.updateInputStatus(inputs.getId(), "Approved");
+                    Toast.makeText(context, "Edit Input Info "+inputId, Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(context, "Can't edit input data now.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

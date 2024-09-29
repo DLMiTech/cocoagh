@@ -57,6 +57,16 @@ public class InputRepo extends DBAccess {
     }
 
 
+    public void updateInputStatus(int id, String newStatus) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", newStatus);
+
+        db.update(TABLE_NAME, values, "id=?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
+
     public void updateInput(Inputs inputs) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -86,10 +96,10 @@ public class InputRepo extends DBAccess {
                 String inputType = cursor.getString(cursor.getColumnIndex("type"));
                 String inputQty = cursor.getString(cursor.getColumnIndex("qty"));
                 String inputNote = cursor.getString(cursor.getColumnIndex("note"));
-                String requestDate = cursor.getString(cursor.getColumnIndex("requestDate"));
                 String status = cursor.getString(cursor.getColumnIndex("status"));
+                String requestDate = cursor.getString(cursor.getColumnIndex("requestDate"));
 
-                Inputs inputs = new Inputs(id, farmerId, farmerName, inputType, inputQty, inputNote, requestDate, status);
+                Inputs inputs = new Inputs(id, farmerId, farmerName, inputType, inputQty, inputNote, status, requestDate);
                 inputsList.add(inputs);
 
             } while (cursor.moveToNext());
@@ -119,13 +129,11 @@ public class InputRepo extends DBAccess {
                 String inputType = cursor.getString(cursor.getColumnIndex("type"));
                 String inputQty = cursor.getString(cursor.getColumnIndex("qty"));
                 String inputNote = cursor.getString(cursor.getColumnIndex("note"));
-                String requestDate = cursor.getString(cursor.getColumnIndex("requestDate"));
                 String status = cursor.getString(cursor.getColumnIndex("status"));
-                // Fallback for status column, assuming default status = 0 if not found
-//                int status = cursor.getColumnIndex("status") != -1 ? cursor.getInt(cursor.getColumnIndex("status")) : 0;
+                String requestDate = cursor.getString(cursor.getColumnIndex("requestDate"));
 
                 // Create a new Farms object and add it to the list
-                Inputs inputs = new Inputs(id, farmerId, farmerName, inputType, inputQty, inputNote, requestDate, status);
+                Inputs inputs = new Inputs(id, farmerIdz, farmerName, inputType, inputQty, inputNote, status, requestDate);
                 inputsList.add(inputs);
             } while (cursor.moveToNext());
         }

@@ -17,6 +17,30 @@
         android:theme="@style/Theme.CoCoaGH"
         tools:targetApi="31">
         <activity
+            android:name=".lbc.LbcProfile"
+            android:exported="false" />
+        <activity
+            android:name=".lbc.LbcSearch"
+            android:exported="false" />
+        <activity
+            android:name=".lbc.LbcShop"
+            android:exported="false" />
+        <activity
+            android:name=".farmer.VideoInfo"
+            android:exported="false" />
+        <activity
+            android:name=".farmer.ContactInfo"
+            android:exported="false" />
+        <activity
+            android:name=".farmer.ViewBeans"
+            android:exported="false" />
+        <activity
+            android:name=".farmer.AddBeans"
+            android:exported="false" />
+        <activity
+            android:name=".govemment.AdminViewFarmerFarms"
+            android:exported="false" />
+        <activity
             android:name=".farmer.ViewInputs"
             android:exported="false" />
         <activity

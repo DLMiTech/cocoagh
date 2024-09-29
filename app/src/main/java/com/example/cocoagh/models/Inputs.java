@@ -4,13 +4,13 @@ public class Inputs {
     private int id, farmerId;
     private String inputType, inputQty, inputNote, farmName, requestDate, status;
 
-    public Inputs(int id, int farmerId, String inputType, String inputQty, String inputNote, String farmName, String requestDate, String status) {
+    public Inputs(int id, int farmerId, String farmName, String inputType, String inputQty, String inputNote, String status, String requestDate) {
         this.id = id;
         this.farmerId = farmerId;
+        this.farmName = farmName;
         this.inputType = inputType;
         this.inputQty = inputQty;
         this.inputNote = inputNote;
-        this.farmName = farmName;
         this.requestDate = requestDate;
         this.status = status;
     }

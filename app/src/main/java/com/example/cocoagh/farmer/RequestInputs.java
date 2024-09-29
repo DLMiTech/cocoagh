@@ -62,6 +62,10 @@ public class RequestInputs extends AppCompatActivity {
                 inputs.setInputQty(myInputQty);
                 inputs.setInputNote(myInputNote);
 
+//                Toast.makeText(this, "ID" + inputs.getFarmerId()+", "+inputs.getFarmName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Input" + inputs.getInputType()+", "+inputs.getInputQty()+ ", "+inputs.getInputNote(), Toast.LENGTH_SHORT).show();
+
+
                 try {
                     InputRepo inputRepo = new InputRepo(this);
                     boolean result = inputRepo.addInput(inputs);
@@ -88,9 +92,11 @@ public class RequestInputs extends AppCompatActivity {
 
     public void init(){
         backBtn = findViewById(R.id.backBtn);
+
         inputType = findViewById(R.id.inputType);
         inputQty = findViewById(R.id.inputQty);
         inputNote = findViewById(R.id.inputNote);
+
         submit = findViewById(R.id.submitInputBtn);
     }
 }

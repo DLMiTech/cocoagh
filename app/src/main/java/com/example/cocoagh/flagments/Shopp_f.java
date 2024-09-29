@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.cocoagh.R;
 import com.example.cocoagh.farmer.RequestInputs;
+import com.example.cocoagh.farmer.ViewBeans;
 import com.example.cocoagh.farmer.ViewFarms;
 import com.example.cocoagh.farmer.ViewInputs;
 
@@ -28,6 +29,7 @@ public class Shopp_f extends Fragment {
         CardView addInputs = view.findViewById(R.id.addInputs);
         CardView viewInputs = view.findViewById(R.id.viewInputs);
         CardView farmRequests = view.findViewById(R.id.farmRequests);
+        CardView beansView = view.findViewById(R.id.beansAdd);
 
 
         viewFarm.setOnClickListener(view1 -> {
@@ -44,6 +46,10 @@ public class Shopp_f extends Fragment {
 
         farmRequests.setOnClickListener(view1 -> {
             Toast.makeText(getActivity(), "Farm requests Info", Toast.LENGTH_SHORT).show();
+        });
+
+        beansView.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), ViewBeans.class));
         });
 
         return view;

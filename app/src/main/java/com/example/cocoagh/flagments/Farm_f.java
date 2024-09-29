@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -27,9 +28,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocoagh.R;
+import com.example.cocoagh.farmer.AddBeans;
+import com.example.cocoagh.farmer.ViewFarms;
 import com.example.cocoagh.models.Farms;
 import com.example.cocoagh.repo.FarmRepo;
 
@@ -72,6 +76,12 @@ public class Farm_f extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_farm_f, container, false);
 
+        TextView addBeansBtn = view.findViewById(R.id.addBeansTxt);
+
+        addBeansBtn.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), AddBeans.class));
+        });
+
         AutoCompleteTextView farmStatus = view.findViewById(R.id.farmStatsInput);
         ArrayAdapter<String> adapterItems = new ArrayAdapter<String>(requireActivity(), R.layout.list_items, positions);
         farmStatus.setAdapter(adapterItems);
@@ -82,16 +92,13 @@ public class Farm_f extends Fragment {
         chooseImg = view.findViewById(R.id.chooseImageBtn);
         imageView = view.findViewById(R.id.candidateImage);
 
+
+
         farmStatus.setOnItemClickListener((adapterView, f_view, i, l) -> {
             selectedStage = adapterView.getItemAtPosition(i).toString();
         });
 
-
-
         chooseImage();
-
-
-
 
         saveFarm.setOnClickListener(view1 -> {
             String myStage = selectedStage;
@@ -148,6 +155,8 @@ public class Farm_f extends Fragment {
 
 
 
+
+
     private byte[] imageViewToByte(ImageView imageView){
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -156,16 +165,12 @@ public class Farm_f extends Fragment {
         return bytes;
     }
 
-
-
     // Open Gallery if permission is granted
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_CODE_GALLERY);
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -178,8 +183,6 @@ public class Farm_f extends Fragment {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -195,8 +198,6 @@ public class Farm_f extends Fragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-
 
     public void chooseImage(){
         chooseImg.setOnClickListener(view -> {
