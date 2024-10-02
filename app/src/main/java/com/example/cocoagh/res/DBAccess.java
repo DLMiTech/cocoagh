@@ -60,6 +60,21 @@ public class DBAccess extends SQLiteOpenHelper {
                 "addedDate DATETIME DEFAULT CURRENT_TIMESTAMP" +
                 ")";
 
+        String CREATE_BOUGHT = "CREATE TABLE bought(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "lbcId INTEGER," +
+                "farmerId INTEGER," +
+                "lbcName TEXT," +
+                "lbcPhone TEXT," +
+                "farmerName TEXT," +
+                "farmerPhone TEXT," +
+                "farmerLocation TEXT," +
+                "quantity TEXT," +
+                "total TEXT," +
+                "payerName TEXT," +
+                "paymentType TEXT," +
+                "dateBought DATETIME DEFAULT CURRENT_TIMESTAMP)";
+
 
 
 
@@ -67,6 +82,7 @@ public class DBAccess extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_INPUT_TABLE);
         sqLiteDatabase.execSQL(createUsersTable);
         sqLiteDatabase.execSQL(CREATE_BEANS);
+        sqLiteDatabase.execSQL(CREATE_BOUGHT);
     }
 
     @Override
@@ -75,12 +91,14 @@ public class DBAccess extends SQLiteOpenHelper {
         String dropFarmTable = "DROP TABLE IF EXISTS farms;";
         String dropInputTable = "DROP TABLE IF EXISTS inputs;";
         String dropBeansTable = "DROP TABLE IF EXISTS inputs;";
+        String dropBoughtTable = "DROP TABLE IF EXISTS bought;";
 
         // Drop existing tables
         sqLiteDatabase.execSQL(dropUsersTable);
         sqLiteDatabase.execSQL(dropFarmTable);
         sqLiteDatabase.execSQL(dropInputTable);
         sqLiteDatabase.execSQL(dropBeansTable);
+        sqLiteDatabase.execSQL(dropBoughtTable);
 
         // Recreate the tables
         onCreate(sqLiteDatabase);

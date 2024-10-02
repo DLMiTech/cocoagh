@@ -1,4 +1,4 @@
-package com.example.cocoagh.lbc;
+package com.example.cocoagh.farmer;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,28 +14,26 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.cocoagh.R;
 import com.example.cocoagh.adapters.BoughtAdapter;
-import com.example.cocoagh.adapters.MarketBeansAdapter;
-import com.example.cocoagh.models.Beans;
 import com.example.cocoagh.models.Bought;
-import com.example.cocoagh.repo.BeansRepo;
 import com.example.cocoagh.repo.BoughtRepo;
 
 import java.util.List;
 
-public class LbcShop extends AppCompatActivity {
-
+public class BeansBought extends AppCompatActivity {
     private ImageView backBtn;
     private GridView gridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_lbc_shop);
+        setContentView(R.layout.activity_beans_bought);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         init();
         backBtn.setOnClickListener(view -> {
             finish();
@@ -43,10 +41,10 @@ public class LbcShop extends AppCompatActivity {
 
         try {
             SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
-            int lbcId = sharedPreferences.getInt("user_id", -1);
+            int farmerId = sharedPreferences.getInt("user_id", -1);
 
             BoughtRepo boughtRepo = new BoughtRepo(this);
-            List<Bought> boughtList = boughtRepo.getBoughtBeansByLBC(lbcId);
+            List<Bought> boughtList = boughtRepo.getBoughtBeansForFarmer(farmerId);
 
             // Create and set the adapter
             BoughtAdapter adapter = new BoughtAdapter(this, boughtList);
@@ -57,6 +55,7 @@ public class LbcShop extends AppCompatActivity {
             Toast.makeText(this, "Failed to retrieve bought beans: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
 
     public void init(){
         backBtn = findViewById(R.id.backBtn);

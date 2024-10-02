@@ -60,13 +60,15 @@
         android:id="@+id/addLBC"
         android:layout_width="170dp"
         android:layout_height="175dp"
-        android:elevation="15dp"
-        app:cardCornerRadius="15dp"
-        android:backgroundTint="@color/light_blue"
         android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/light_blue"
+        android:elevation="15dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/connectFarmers"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameTxt" >
+        app:layout_constraintTop_toBottomOf="@+id/userNameTxt">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -107,8 +109,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="0"
-                android:textSize="30dp"
                 android:textAlignment="center"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -180,13 +182,15 @@
         android:id="@+id/provideInputs"
         android:layout_width="170dp"
         android:layout_height="175dp"
-        android:elevation="15dp"
-        app:cardCornerRadius="15dp"
-        android:backgroundTint="@color/light_orange"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/light_orange"
+        android:elevation="15dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/purchaseBeans"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addLBC" >
+        app:layout_constraintTop_toBottomOf="@+id/addLBC">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -227,8 +231,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="0"
-                android:textSize="30dp"
                 android:textAlignment="center"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

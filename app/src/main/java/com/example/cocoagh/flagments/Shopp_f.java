@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cocoagh.R;
+import com.example.cocoagh.farmer.BeansBought;
 import com.example.cocoagh.farmer.RequestInputs;
 import com.example.cocoagh.farmer.ViewBeans;
 import com.example.cocoagh.farmer.ViewFarms;
@@ -45,7 +46,7 @@ public class Shopp_f extends Fragment {
         });
 
         farmRequests.setOnClickListener(view1 -> {
-            Toast.makeText(getActivity(), "Farm requests Info", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity(), BeansBought.class));
         });
 
         beansView.setOnClickListener(view1 -> {

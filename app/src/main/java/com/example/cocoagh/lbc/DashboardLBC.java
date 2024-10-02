@@ -3,8 +3,10 @@ package com.example.cocoagh.lbc;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -15,12 +17,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.cocoagh.MainActivity;
 import com.example.cocoagh.R;
+import com.example.cocoagh.adapters.FarmerBeansAdapter;
+import com.example.cocoagh.adapters.MarketBeansAdapter;
 import com.example.cocoagh.farmer.DashboardF;
+import com.example.cocoagh.models.Beans;
+import com.example.cocoagh.repo.BeansRepo;
+
+import java.util.List;
 
 public class DashboardLBC extends AppCompatActivity {
 
     private TextView userName;
     private ImageView logout;
+    private GridView gridView;
 
     private ImageView shop, search, profile;
 
@@ -88,6 +97,21 @@ public class DashboardLBC extends AppCompatActivity {
             Intent profilIntent = new Intent(this, LbcProfile.class);
             startActivity(profilIntent);
         });
+
+
+
+        try {
+            BeansRepo beansRepo = new BeansRepo(this);
+            List<Beans> beansList = beansRepo.getAllBeans();
+
+            // Create and set the adapter
+            MarketBeansAdapter adapter = new MarketBeansAdapter(this, beansList);
+            gridView.setAdapter(adapter);
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Print the stack trace to logcat
+            Toast.makeText(this, "Failed to retrieve farmers beans: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     public void init(){
@@ -97,5 +121,7 @@ public class DashboardLBC extends AppCompatActivity {
         shop = findViewById(R.id.imageView20);
         search = findViewById(R.id.imageView22);
         profile = findViewById(R.id.imageView21);
+
+        gridView = findViewById(R.id.beans_grid_view);
     }
 }

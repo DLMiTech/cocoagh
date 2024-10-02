@@ -1,6 +1,8 @@
 package com.example.cocoagh.models;
 
-public class Beans {
+import java.io.Serializable;
+
+public class Beans implements Serializable {
     int id, farmerId;
     double quantity, price, total;
     String address, phone, farmerName, addedDate, status;
